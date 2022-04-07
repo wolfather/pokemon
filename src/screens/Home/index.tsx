@@ -27,7 +27,7 @@ export const Home = () => {
                     numColumns={3}
                     columnWrapperStyle={{alignContent: 'center', justifyContent: 'space-between'}}
                     renderItem={({item}: Pokemon) => <Card props={item} />}
-                    onEndReached={() => console.log('fim da lista')}
+                    onEndReached={() => console.log('end of list')}
                 />
             </LinearGradient>
         </View>

@@ -18,7 +18,6 @@ export const useFetchPokemons = () => {
     useEffect(() => {
         fetchPokemons()
             .catch(err => {
-                console.log(err);
                 setError(true);
             })
             .finally(() => {
