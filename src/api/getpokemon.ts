@@ -1,18 +1,16 @@
 import axios from "axios"
 import { ENDPOINT } from "../graphql/endpoint"
 
-export const getPokemon = async (id: number) => {
-    const fetch = await axios.get(ENDPOINT, {
-        params: {id}
-    }).then(response => {
-        const urls = response.data.results.map(result => {
-            return axios.get(result.url);
+export const getPokemon = async (endpoint = ENDPOINT) => {
+    const fetch = await axios.get(endpoint)
+        .then(response => {
+            const { results } = response.data;
+            const urls = results.map(result => axios.get(result.url));
+
+            const allRequests = axios.all(urls);
+            
+            return allRequests;
         });
 
-        const allAxios = axios.all(urls);
-        
-        return allAxios;
-    });
-
     return fetch;
-}
+};
